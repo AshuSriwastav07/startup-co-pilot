@@ -12,7 +12,7 @@ import { RefreshCcwIcon, HomeIcon, CheckCircleIcon } from "lucide-react"
 import { marked } from "marked"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 
 interface MarketGrowthData {
   year: number
