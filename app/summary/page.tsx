@@ -312,12 +312,10 @@ export default function SummaryPage() {
             )}
 
             {/* Section: Want to know more about competition? */}
-            {!isLoading &&
-              !error &&
-              explainedIdea &&
-              !isCompetitorQuerySubmitted &&
-              (
-                <Card className="w-full mt-8 shadow-xl rounded-xl bg-white/90 backdrop-blur-sm border border-blue-200"> {/* Responsive width */}
+            {!isLoading && !error && explainedIdea && !isCompetitorQuerySubmitted && (
+              <Card className="w-full mt-8 shadow-xl rounded-xl bg-white/90 backdrop-blur-sm border border-blue-200">
+                {" "}
+                {/* Responsive width */}
                 <CardHeader className="p-6 bg-blue-50 border-b border-blue-200">
                   <CardTitle className="text-2xl font-bold text-blue-800">
                     Want to know more about competition in the same segment?
@@ -331,7 +329,7 @@ export default function SummaryPage() {
                     <RadioGroup
                       value={wantsCompetitorDetails}
                       onValueChange={setWantsCompetitorDetails}
-                      className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-6\" {/* Responsive layout */}\
+                      className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-6" // Responsive layout
                     >
                       <div className="flex items-center space-x-3">
                         <RadioGroupItem value="yes" id="competitor-yes" />
@@ -352,7 +350,7 @@ export default function SummaryPage() {
                   </>
                 </CardContent>
               </Card>
-              )}
+            )}
 
             {/* AI Market Research Section */}
             {isCompetitorQuerySubmitted && wantsCompetitorDetails === "yes" && (
