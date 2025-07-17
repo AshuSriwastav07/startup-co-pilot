@@ -27,12 +27,7 @@ export function Header() {
         >
           Analyze
         </Link>
-        <Link
-          className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
-          href="/summary"
-        >
-          Summary
-        </Link>
+        
       </nav>
     </header>
   )
