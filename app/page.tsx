@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { BrainIcon, LightbulbIcon } from "lucide-react"
+import { Analytics } from "@vercel/analytics/react"
 
 export default function HomePage() {
   const [idea, setIdea] = useState("")
@@ -21,9 +22,8 @@ export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <Analytics />
-
       <Header />
-      <main className="flex-1 flex flex-col items-center justify-center p-4 md:p-6">
+      <main className="flex-1 flex flex-col items-center justify-center p-4 md:p-6"> 
         {" "}
         {/* Responsive padding */}
         <Card className="w-full max-w-3xl shadow-2xl rounded-xl overflow-hidden bg-white/90 backdrop-blur-sm border border-blue-200">
