@@ -92,3 +92,17 @@ body {
     @apply bg-background text-foreground;
   }
 }
+/* Add borders to tables rendered inside markdown (prose) */
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5em 0;
+}
+.prose th, .prose td {
+  border: 1px solid #3b82f6; /* Tailwind blue-500 */
+  padding: 0.5em 0.75em;
+  text-align: left;
+}
+.prose th {
+  background-color: #eff6ff; /* Tailwind blue-50 */
+}
