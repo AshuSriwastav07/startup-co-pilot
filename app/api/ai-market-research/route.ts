@@ -28,6 +28,8 @@ Your task is to generate a **comprehensive and realistic market research report*
 
 Search about the idea on internet and get some if data related of sector growth and shows.
 
+**IMPORTANT:** In all monetary values, market size, and funding data, use the currency of the user's selected country/region (${userLocation}) instead of US dollars. If the currency is not obvious, use the most common local currency for that country. Always show the currency symbol or abbreviation (e.g., INR, EUR, GBP, etc.).
+
 **Content for the "report" key (in Markdown format):**
 
 ### 🔍 STEP 1: UNDERSTANDING THE IDEA
@@ -40,7 +42,7 @@ Write a 3–4 line summary covering:
 ---
 
 ### 📊 STEP 2: COMPETITOR LANDSCAPE
-Do **real competitive research** and include at least **6-8 well-known or niche competitors** working in the **same or similar space**.
+Do **real competitive research** and include **9-13 well-known or niche competitors** working in the **same or similar space**. Of these, at least **8 should be international/global competitors** and the remaining should be from the **same country/region as the user (selected country: ${userLocation})**.
 For each competitor include:
 - Name of company or product
 - Official website link

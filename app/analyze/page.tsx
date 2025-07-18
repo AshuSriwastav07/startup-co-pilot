@@ -60,12 +60,12 @@ export default function AnalyzePage() {
 
   const countries = [
     "United States",
+    "India",
     "Canada",
     "United Kingdom",
     "Australia",
     "Germany",
     "France",
-    "India",
     "Brazil",
     "Japan",
     "China",
@@ -190,14 +190,32 @@ export default function AnalyzePage() {
   ]
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-x-hidden">
+      {/* Animated Background Shapes */}
+      <div className="absolute inset-0 pointer-events-none select-none z-0">
+        <svg viewBox="0 0 1440 320" className="w-full h-64 md:h-96 opacity-60">
+          <path fill="#6366f1" fillOpacity="0.2" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,133.3C840,107,960,85,1080,101.3C1200,117,1320,171,1380,197.3L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
+        </svg>
+        <div className="absolute top-10 right-10 animate-float-slow">
+          <svg width="60" height="60"><circle cx="30" cy="30" r="28" fill="#a5b4fc" fillOpacity="0.18" /></svg>
+        </div>
+        <div className="absolute bottom-20 left-10 animate-float-fast">
+          <svg width="40" height="40"><rect width="40" height="40" rx="12" fill="#818cf8" fillOpacity="0.12" /></svg>
+        </div>
+      </div>
       <Header />
-      <main className="flex-1 flex flex-col items-center p-4 md:p-6">
-        {" "}
-        {/* Responsive padding */}
-        <Card className="w-full max-w-3xl shadow-xl rounded-xl mb-8 bg-white/90 backdrop-blur-sm border border-blue-200">
-          {" "}
-          {/* Responsive width */}
+      <main className="flex-1 flex flex-col items-center p-4 md:p-6 z-10">
+        {/* Hero Section */}
+        <div className="w-full max-w-3xl text-center mb-8 mt-8">
+          <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-fade-in">
+            Tell Us More About Your Idea
+          </h1>
+          <div className="mt-4 text-lg md:text-xl text-blue-700 font-semibold animate-fade-in delay-200">
+            Answer a few quick questions to get a tailored analysis and plan.
+          </div>
+        </div>
+        {/* Idea Card */}
+        <Card className="w-full max-w-3xl shadow-2xl rounded-xl mb-8 bg-white/90 backdrop-blur-sm border border-blue-200 animate-fade-in delay-300">
           <CardHeader className="flex flex-row items-center gap-4 p-6 bg-blue-50 border-b border-blue-200">
             <LightbulbIcon className="h-8 w-8 text-blue-600" />
             <div>
@@ -211,9 +229,8 @@ export default function AnalyzePage() {
             </div>
           </CardContent>
         </Card>
-        <Card className="w-full max-w-3xl shadow-xl rounded-xl bg-white/90 backdrop-blur-sm border border-blue-200">
-          {" "}
-          {/* Responsive width */}
+        {/* Questions Card */}
+        <Card className="w-full max-w-3xl shadow-2xl rounded-xl bg-white/90 backdrop-blur-sm border border-blue-200 animate-fade-in delay-500">
           <CardHeader className="p-6 bg-blue-50 border-b border-blue-200">
             <CardTitle className="text-2xl font-bold text-blue-800">Deep Dive into Your Concept</CardTitle>
             <CardDescription className="text-gray-600">
@@ -424,7 +441,7 @@ export default function AnalyzePage() {
 
             <Button
               onClick={handleContinue}
-              className="w-full py-4 text-xl font-bold bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white rounded-lg shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full py-4 text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-lg shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-8"
               disabled={!allQuestionsAnswered}
             >
               Continue to Plan Generation

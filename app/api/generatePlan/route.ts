@@ -4,7 +4,7 @@ import { type NextRequest, NextResponse } from "next/server"
 
 export async function POST(req: NextRequest) {
   try {
-    const { idea, answers } = await req.json()
+    const { idea, answers, location } = await req.json()
 
     if (!idea || !answers || !Array.isArray(answers)) {
       return NextResponse.json({ error: "Idea and answers are required" }, { status: 400 })
@@ -25,6 +25,7 @@ export async function POST(req: NextRequest) {
       - Step-by-Step Execution Plan
       - Timeline for Launch
       - Budget Forecast
+      - **IMPORTANT:** In all monetary values, market size, and funding data, use the currency of the user's selected country/region (${location}) instead of US dollars. If the currency is not obvious, use the most common local currency for that country. Always show the currency symbol or abbreviation (e.g., INR, EUR, GBP, etc.).
 
       ---
       Startup Idea: ${idea}
