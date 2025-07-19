@@ -27,7 +27,7 @@ Startup Co-Pilot is an AI-powered web application designed to assist entrepreneu
 
 ## 🚀 Live Demo
 
-- **Live Application**: [https://vercel.com/ashu-sriwastavs-projects/v0-startup-idea-analyzer](https://startup-co-pilot.vercel.app/)
+- **Live Application**: [startup-co-pilot.vercel.app](https://startup-co-pilot.vercel.app/)
 
 ## 📋 Prerequisites
 
