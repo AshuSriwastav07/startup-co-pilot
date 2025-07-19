@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { BrainIcon, LightbulbIcon, RocketIcon, UsersIcon, BarChart3Icon, ShieldCheckIcon, StarIcon, QuoteIcon } from "lucide-react"
+import { Analytics } from '@vercel/analytics/react';
+
 
 export default function HomePage() {
   const [idea, setIdea] = useState("")
@@ -82,6 +84,7 @@ export default function HomePage() {
 
     return (
       <div className="relative w-full max-w-4xl mx-auto mt-16 z-10">
+      <Analytics />
         <h2 className="text-2xl font-bold text-center mb-6 text-blue-800">What Founders Are Saying</h2>
         <div className="flex justify-center gap-8 transition-all duration-700">
           {slides.map((t, idx) => (
