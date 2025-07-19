@@ -211,7 +211,7 @@ export default function HomePage() {
         {/* Product Hunt Badge - after testimonials, before footer */}
         <div className="w-full flex justify-center my-8">
           <a href="https://www.producthunt.com/products/startup-co-pilot?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-startup&#0045;co&#0045;pilot" target="_blank" rel="noopener noreferrer">
-            <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=994485&theme=dark&t=1752864789817" alt="Startup Co-Pilot - Take the First Step to Validate and Shape Your Startup Idea | Product Hunt" style={{ width: 250, height: 54 }} width="250" height="54" />
+            <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=994485&theme=light&t=1752908696575" alt="Startup Co-Pilot - Take the First Step to Validate and Shape Your Startup Idea | Product Hunt" style={{ width: 250, height: 54 }} width="250" height="54" />
           </a>
         </div>
       </main>
