@@ -203,13 +203,6 @@ startup-co-pilot/
 
 ### 🚧 Version 2.0
 
-* [ ] Mobile App (React Native or Flutter)
-* [ ] AI-enhanced pitch deck generator
-* [ ] Team collaboration features
-* [ ] Offline support (PWA)
-
-### 🚀 Version 2.1
-
 * [ ] Startup database integration (Crunchbase/Tracxn)
 * [ ] Investment/funding suggestions
 * [ ] Mentor discovery & booking
