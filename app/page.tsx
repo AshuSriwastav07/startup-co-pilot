@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { BrainIcon, LightbulbIcon, RocketIcon, UsersIcon, BarChart3Icon, ShieldCheckIcon, StarIcon, QuoteIcon } from "lucide-react"
+import { Analytics } from '@vercel/analytics/react';
 
 export default function HomePage() {
   const [idea, setIdea] = useState("")
@@ -82,6 +83,7 @@ export default function HomePage() {
 
     return (
       <div className="relative w-full max-w-4xl mx-auto mt-16 z-10">
+        <Analytics />
         <h2 className="text-2xl font-bold text-center mb-6 text-blue-800">What Founders Are Saying</h2>
         <div className="flex justify-center gap-8 transition-all duration-700">
           {slides.map((t, idx) => (
@@ -208,7 +210,7 @@ export default function HomePage() {
         {/* Product Hunt Badge - after testimonials, before footer */}
         <div className="w-full flex justify-center my-8">
           <a href="https://www.producthunt.com/products/startup-co-pilot?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-startup&#0045;co&#0045;pilot" target="_blank" rel="noopener noreferrer">
-            <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=994485&theme=dark&t=1752864789817" alt="Startup Co-Pilot - Take the First Step to Validate and Shape Your Startup Idea | Product Hunt" style={{ width: 250, height: 54 }} width="250" height="54" />
+            <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=994485&theme=light&t=1752908696575" alt="Startup Co-Pilot - Take the First Step to Validate and Shape Your Startup Idea | Product Hunt" style={{ width: 250, height: 54 }} width="250" height="54" />
           </a>
         </div>
       </main>
@@ -216,7 +218,7 @@ export default function HomePage() {
       <footer className="w-full bg-white/90 border-t border-blue-200 py-6 mt-16 z-20">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 gap-4 relative">
           <div className="flex items-center gap-2">
-            <img src="/icon.jpeg" alt="Logo" className="h-8 w-8" />
+            <img src="/images/rocket-icon.jpeg" alt="Logo" className="h-8 w-8" />
             <span className="font-bold text-blue-700 text-lg">Startup Co-Pilot</span>
           </div>
           <div className="flex gap-6 text-gray-500 text-sm">
