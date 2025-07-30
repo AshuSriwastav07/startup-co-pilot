@@ -92,3 +92,74 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Add borders to tables rendered inside markdown (prose) */
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5em 0;
+}
+.prose th, .prose td {
+  border: 1px solid #3b82f6; /* Tailwind blue-500 */
+  padding: 0.5em 0.75em;
+  text-align: left;
+}
+.prose th {
+  background-color: #eff6ff; /* Tailwind blue-50 */
+}
+
+/* Custom prose class for summary page AI result sections */
+.custom-prose p { margin-bottom: 1.25em; }
+.custom-prose h2, .custom-prose h3, .custom-prose h4 { margin-top: 2em; margin-bottom: 0.75em; }
+.custom-prose table { display: block; width: 100%; overflow-x: auto; margin-bottom: 1.5em; position: relative; background: linear-gradient(to right, #fff 90%, #e0e7ef 100%); }
+.custom-prose th, .custom-prose td { white-space: nowrap; }
+.custom-prose .scroll-hint {
+  position: absolute;
+  top: 50%;
+  right: 0.5em;
+  transform: translateY(-50%);
+  background: linear-gradient(to right, transparent, #e0e7ef 80%);
+  color: #64748b;
+  font-size: 0.9em;
+  padding: 0.2em 0.7em 0.2em 1.2em;
+  border-radius: 1em;
+  pointer-events: none;
+  z-index: 10;
+  display: none;
+}
+.custom-prose table[aria-scrollable="true"] + .scroll-hint {
+  display: block;
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 0 0 #a5b4fc; }
+  50% { box-shadow: 0 0 16px 4px #818cf8; }
+}
+.animate-glow {
+  animation: glow 2.5s infinite;
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float-fast {
+  animation: float-fast 3.5s ease-in-out infinite;
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-fade-in {
+  animation: fade-in 1s cubic-bezier(.4,0,.2,1) both;
+}
+.animate-fade-in.delay-200 { animation-delay: 0.2s; }
+.animate-fade-in.delay-300 { animation-delay: 0.3s; }
+.animate-fade-in.delay-500 { animation-delay: 0.5s; }
+.animate-fade-in.delay-700 { animation-delay: 0.7s; }

@@ -126,26 +126,6 @@ export default function SummaryPage() {
     router.push("/")
   }
 
-  const handleExportPdf = async () => {
-    const element = printRef.current
-    if (!element) {
-      console.warn("No element to export to PDF.")
-      return
-    }
-
-    const html2pdf = (await import("html2pdf.js")).default
-
-    const options = {
-      margin: 0.5,
-      filename: "startup-idea-summary.pdf",
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-    }
-
-    html2pdf().set(options).from(element).save()
-  }
-
   const handleSubmitCompetitorQuery = async () => {
     setIsCompetitorQuerySubmitted(true) // Mark that the choice has been submitted
 
@@ -276,25 +256,41 @@ export default function SummaryPage() {
       wantsCompetitorDetails === "no") // If no, show immediately after competitor choice
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-x-hidden">
+      {/* Animated Background Shapes */}
+      <div className="absolute inset-0 pointer-events-none select-none z-0">
+        <svg viewBox="0 0 1440 320" className="w-full h-64 md:h-96 opacity-60">
+          <path fill="#6366f1" fillOpacity="0.2" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,133.3C840,107,960,85,1080,101.3C1200,117,1320,171,1380,197.3L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
+        </svg>
+        <div className="absolute top-10 right-10 animate-float-slow">
+          <svg width="60" height="60"><circle cx="30" cy="30" r="28" fill="#a5b4fc" fillOpacity="0.18" /></svg>
+        </div>
+        <div className="absolute bottom-20 left-10 animate-float-fast">
+          <svg width="40" height="40"><rect width="40" height="40" rx="12" fill="#818cf8" fillOpacity="0.12" /></svg>
+        </div>
+      </div>
       <Header />
-      <main ref={printRef} className="flex-1 flex flex-col items-center p-4 md:p-6">
-        {" "}
-        {/* Responsive padding */}
+      <main ref={printRef} className="flex-1 flex flex-col items-center p-4 md:p-6 z-10">
+        {/* Hero Section */}
+        <div className="w-full max-w-3xl text-center mb-8 mt-8">
+          <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-fade-in">
+            Your Personalized Startup Analysis
+          </h1>
+          <div className="mt-4 text-lg md:text-xl text-blue-700 font-semibold animate-fade-in delay-200">
+            See your idea explained, analyzed, and budgeted—instantly.
+          </div>
+        </div>
+        {/* Main Card */}
         <Card className="w-full max-w-4xl shadow-2xl rounded-xl bg-white/90 backdrop-blur-sm border border-blue-200">
-          {" "}
-          {/* Responsive width */}
           <CardHeader className="text-center p-8 bg-gradient-to-r from-blue-600 to-purple-700 text-white rounded-t-xl">
             <CheckCircleIcon className="h-12 w-12 mx-auto mb-4 text-white" />
-            <CardTitle className="text-4xl md:text-5xl font-extrabold">Your Startup Plan is Ready!</CardTitle>{" "}
-            {/* Responsive font size */}
+            <CardTitle className="text-4xl md:text-5xl font-extrabold">Your Startup Plan is Ready!</CardTitle>
             <CardDescription className="text-blue-100 mt-4 text-lg md:text-xl">
-              {" "}
-              {/* Responsive font size */}
               Dive into the detailed explanation of your idea, crafted by AI.
             </CardDescription>
           </CardHeader>
           <CardContent className="p-8 space-y-8">
+            {/* AI Explanation Section */}
             {isLoading ? (
               <LoadingSpinner />
             ) : error ? (
@@ -302,10 +298,15 @@ export default function SummaryPage() {
                 {error}
               </div>
             ) : explainedIdea ? (
-              <div className="prose max-w-none mx-auto p-6 border-2 border-blue-300 rounded-lg bg-blue-50 shadow-inner text-gray-800 leading-relaxed">
-                <h2 className="text-3xl font-bold text-blue-800 mb-4">Detailed Idea Explanation</h2>
-                <div dangerouslySetInnerHTML={{ __html: renderedHtml || "" }} />
-              </div>
+              <section className="w-full">
+                <div className="flex items-center gap-3 mb-4">
+                  <CheckCircleIcon className="h-8 w-8 text-blue-500" />
+                  <h2 className="text-3xl font-extrabold text-blue-800">Detailed Idea Explanation</h2>
+                </div>
+                <div className="prose custom-prose max-w-none mx-auto p-8 border-2 border-blue-200 rounded-2xl bg-blue-50 shadow-inner text-gray-800 leading-relaxed text-lg">
+                  <div dangerouslySetInnerHTML={{ __html: renderedHtml || "" }} />
+                </div>
+              </section>
             ) : (
               <div className="text-center text-gray-600 text-lg p-6 border border-gray-300 bg-gray-50 rounded-lg">
                 No explanation found. Please go back and submit your idea.
@@ -314,13 +315,12 @@ export default function SummaryPage() {
 
             {/* Section: Want to know more about competition? */}
             {!isLoading && !error && explainedIdea && !isCompetitorQuerySubmitted && (
-              <Card className="w-full mt-8 shadow-xl rounded-xl bg-white/90 backdrop-blur-sm border border-blue-200">
-                {" "}
-                {/* Responsive width */}
-                <CardHeader className="p-6 bg-blue-50 border-b border-blue-200">
-                  <CardTitle className="text-2xl font-bold text-blue-800">
-                    Want to know more about competition in the same segment?
-                  </CardTitle>
+              <Card className="w-full mt-8 shadow-xl rounded-2xl bg-white/90 backdrop-blur-sm border border-blue-200">
+                <CardHeader className="p-6 bg-blue-50 border-b border-blue-200 rounded-t-2xl">
+                  <div className="flex items-center gap-3">
+                    <CheckCircleIcon className="h-7 w-7 text-purple-500" />
+                    <CardTitle className="text-2xl font-bold text-blue-800">Want to know more about competition in the same segment?</CardTitle>
+                  </div>
                   <CardDescription className="text-gray-600">
                     Would you like to explore existing competitors and similar businesses in your idea’s space?
                   </CardDescription>
@@ -330,7 +330,7 @@ export default function SummaryPage() {
                     <RadioGroup
                       value={wantsCompetitorDetails}
                       onValueChange={setWantsCompetitorDetails}
-                      className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-6" // Responsive layout
+                      className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-6"
                     >
                       <div className="flex items-center space-x-3">
                         <RadioGroupItem value="yes" id="competitor-yes" />
@@ -355,16 +355,12 @@ export default function SummaryPage() {
 
             {/* AI Market Research Section */}
             {isCompetitorQuerySubmitted && wantsCompetitorDetails === "yes" && (
-              <Card className="w-full mt-8 shadow-xl rounded-xl bg-white/90 backdrop-blur-sm border border-blue-200">
-                {" "}
-                {/* Responsive width */}
-                <CardHeader className="p-6 bg-green-50 border-b border-green-200">
-                  <CardTitle className="text-2xl font-bold text-green-800">📊 AI Market Research Report</CardTitle>
-                  <CardDescription className="text-gray-600">
-                    A detailed market analysis generated by AI.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-6 space-y-6">
+              <section className="w-full">
+                <div className="flex items-center gap-3 mb-4 mt-8">
+                  <CheckCircleIcon className="h-8 w-8 text-green-600" />
+                  <h2 className="text-3xl font-extrabold text-green-800">AI Market Research Report</h2>
+                </div>
+                <div className="prose custom-prose max-w-none mx-auto p-8 border-2 border-green-200 rounded-2xl bg-green-50 shadow-inner text-gray-800 leading-relaxed text-lg">
                   {aiMarketResearchLoading ? (
                     <LoadingSpinner />
                   ) : aiMarketResearchError ? (
@@ -372,33 +368,27 @@ export default function SummaryPage() {
                       {aiMarketResearchError}
                     </div>
                   ) : aiMarketInsights ? (
-                    <>
-                      <div className="prose max-w-none mx-auto p-6 border-2 border-blue-300 rounded-lg bg-blue-50 shadow-inner text-gray-800 leading-relaxed">
-                        <div dangerouslySetInnerHTML={{ __html: marked.parse(aiMarketInsights) as string }} />
-                      </div>
-                      <p className="text-sm text-gray-500 mt-4 text-center">
-                        Results are AI-generated and based on the model's training data. Market growth data is
-                        hypothetical. May vary in accuracy.
-                      </p>
-                    </>
+                    <div dangerouslySetInnerHTML={{ __html: marked.parse(aiMarketInsights) as string }} />
                   ) : (
                     <div className="text-center text-gray-600 text-lg p-6 border border-gray-300 bg-gray-50 rounded-lg">
                       No AI market research available.
                     </div>
                   )}
-                </CardContent>
-              </Card>
+                </div>
+                <p className="text-sm text-gray-500 mt-4 text-center">
+                  Results are AI-generated and based on the model's training data. Market growth data is hypothetical. May vary in accuracy.
+                </p>
+              </section>
             )}
 
             {/* Section: Do you want to check Budget Details and how To start your idea? */}
             {showBudgetQuestion && (
-              <Card className="w-full mt-8 shadow-xl rounded-xl bg-white/90 backdrop-blur-sm border border-blue-200">
-                {" "}
-                {/* Responsive width */}
-                <CardHeader className="p-6 bg-purple-50 border-b border-purple-200">
-                  <CardTitle className="text-2xl font-bold text-purple-800">
-                    Do you want to check Budget Details and how To start your idea?
-                  </CardTitle>
+              <Card className="w-full mt-8 shadow-xl rounded-2xl bg-white/90 backdrop-blur-sm border border-blue-200">
+                <CardHeader className="p-6 bg-purple-50 border-b border-purple-200 rounded-t-2xl">
+                  <div className="flex items-center gap-3">
+                    <CheckCircleIcon className="h-7 w-7 text-pink-500" />
+                    <CardTitle className="text-2xl font-bold text-purple-800">Do you want to check Budget Details and how To start your idea?</CardTitle>
+                  </div>
                   <CardDescription className="text-gray-600">
                     Get insights into budget planning and a step-by-step guide to launch your idea.
                   </CardDescription>
@@ -433,18 +423,12 @@ export default function SummaryPage() {
 
             {/* Budget Details and How to Start Section */}
             {isBudgetQuerySubmitted && wantsBudgetDetails === "yes" && (
-              <Card className="w-full mt-8 shadow-xl rounded-xl bg-white/90 backdrop-blur-sm border border-blue-200">
-                {" "}
-                {/* Responsive width */}
-                <CardHeader className="p-6 bg-yellow-50 border-b border-yellow-200">
-                  <CardTitle className="text-2xl font-bold text-yellow-800">
-                    💰 Budget Details & Startup Launch Plan
-                  </CardTitle>
-                  <CardDescription className="text-gray-600">
-                    A tailored plan for starting and budgeting your idea.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-6 space-y-6">
+              <section className="w-full">
+                <div className="flex items-center gap-3 mb-4 mt-8">
+                  <CheckCircleIcon className="h-8 w-8 text-yellow-500" />
+                  <h2 className="text-3xl font-extrabold text-yellow-700">Budget Details & Startup Launch Plan</h2>
+                </div>
+                <div className="prose custom-prose max-w-none mx-auto p-8 border-2 border-yellow-200 rounded-2xl bg-yellow-50 shadow-inner text-gray-800 leading-relaxed text-lg">
                   {budgetPlanLoading ? (
                     <LoadingSpinner />
                   ) : budgetPlanError ? (
@@ -452,21 +436,17 @@ export default function SummaryPage() {
                       {budgetPlanError}
                     </div>
                   ) : budgetPlanInsights ? (
-                    <>
-                      <div className="prose max-w-none mx-auto p-6 border-2 border-blue-300 rounded-lg bg-blue-50 shadow-inner text-gray-800 leading-relaxed">
-                        <div dangerouslySetInnerHTML={{ __html: marked.parse(budgetPlanInsights) as string }} />
-                      </div>
-                      <p className="text-sm text-gray-500 mt-4 text-center">
-                        Results are AI-generated and based on the model's training data. May vary in accuracy.
-                      </p>
-                    </>
+                    <div dangerouslySetInnerHTML={{ __html: marked.parse(budgetPlanInsights) as string }} />
                   ) : (
                     <div className="text-center text-gray-600 text-lg p-6 border border-gray-300 bg-gray-50 rounded-lg">
                       No budget plan available.
                     </div>
                   )}
-                </CardContent>
-              </Card>
+                </div>
+                <p className="text-sm text-gray-500 mt-4 text-center">
+                  Results are AI-generated and based on the model's training data. May vary in accuracy.
+                </p>
+              </section>
             )}
           </CardContent>
         </Card>

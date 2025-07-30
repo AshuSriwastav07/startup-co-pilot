@@ -52,6 +52,7 @@ Explain how the founder should start building this idea step-by-step:
 ---
 
 ### 💰 Step 3: Smart Budget Planning
+**IMPORTANT:** In all monetary values, market size, and funding data, use the currency of the user's selected country/region (${location}) instead of US dollars. If the currency is not obvious, use the most common local currency for that country. Always show the currency symbol or abbreviation (e.g., INR, EUR, GBP, etc.).
 Break down the **total available budget** (as per user input) and show how the money should be spent wisely.
 **Use this structure:**
 > Table 1: Budget Allocation Plan
